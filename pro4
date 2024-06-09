@@ -1,0 +1,25 @@
+import nltk
+from nltk.chat.util import Chat, reflections
+
+# Define pairs of patterns and responses
+pairs = [
+    ["my name is (.*)", ["Hello %1, how can I help you today?"]],
+    ["(hi|hello|hey)", ["Hello, how can I assist you today?"]],
+    ["(.*) your name?", ["I am just a chatbot."]],
+    ["(.*) help (.*)", ["I can help you with a variety of topics. What do you need assistance with?"]],
+    ["(.*) (location|city) ?", ['I am an AI chatbot and exist in the digital world.']],
+    ["(.*) (created|made) you", ["I was created by developers using Python and NLTK."]],
+    ["(.*)", ["I'm sorry, I don't understand. Can you please rephrase?"]],
+]
+
+# Create a chatbot instance
+chatbot = Chat(pairs, reflections)
+
+# Start the conversation loop
+print("Welcome! I'm your chatbot assistant.")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == 'quit':
+        break
+    response = chatbot.respond(user_input)
+    print("Bot:", response)
